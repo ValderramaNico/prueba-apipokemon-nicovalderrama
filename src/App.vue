@@ -1,26 +1,43 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <poke-display
+      v-for="pokemon in pokemons"
+      :key="pokemon"
+      :pokemon="pokemon"
+    />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import PokeDisplay from "./components/PokeDisplay.vue";
+import axios from "axios";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    PokeDisplay,
+  },
+  data() {
+    return {
+      pokemons: [],
+    };
+  },
+  methods: {
+    async getPokemons() {
+      try {
+        const url = "https://pokeapi.co/api/v2/pokemon/?limit=20";
+        const response = await axios.get(url);
+        this.pokemons = response.data.results;
+        console.log(this.pokemons);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
+  mounted() {
+    this.getPokemons();
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
