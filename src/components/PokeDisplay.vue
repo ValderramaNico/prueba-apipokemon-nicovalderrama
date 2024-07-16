@@ -13,7 +13,7 @@
       </form>
     </ul>
     <modal :visible="showModal" @close="showModal = false">
-      <p>Nombre incorrecto. <br> Inténtalo de nuevo.</p>
+      <p  >Nombre incorrecto. <br> Inténtalo de nuevo.</p>
     </modal>
   </div>
 </template>
@@ -37,7 +37,7 @@ export default {
     pokeBlur() {
       return this.correctName
         ? {}
-        : { filter: 'blur(5px) grayscale(100%)' };
+        : { filter: ' brightness(0%)' };
     },
   },
   methods: {
@@ -60,6 +60,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.pokeCard {
+  position: relative;
+}
 
 .incognitoPoke {
   background-image: url("https://miro.medium.com/v2/resize:fit:1400/1*kZW4nlRSLAMq0EA2EoKStg.png");

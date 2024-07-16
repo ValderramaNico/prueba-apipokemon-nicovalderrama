@@ -38,7 +38,8 @@ export default {
   methods: {
     async getPokemons() {
       try {
-        const URL_BASE = "https://pokeapi.co/api/v2/pokemon";
+        const randomNumber = Math.ceil(Math.random() * 151);
+        const URL_BASE = "https://pokeapi.co/api/v2/pokemon?offset="+randomNumber;
         const responseApi = await axios.get(URL_BASE);
         const primerLlamado = responseApi.data.results;
         console.log(primerLlamado);
